@@ -1,0 +1,45 @@
+package com.zhn.service;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.zhn.model.Resource;
+
+@ContextConfiguration(locations = { "classpath:spring/applicationContext.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)
+@Rollback(true)
+@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+public class ResourceServiceTest {
+	
+	@Autowired
+	private ResourceService resourceService;
+
+	@Test
+	public void getResourceById() {
+		Resource resource = resourceService.getById(1l);
+		assertEquals(null, resource);
+	}
+	
+	@Test
+	public void getResourcesByUserid() {
+		List<Resource> resources = resourceService.getUserResourcesByUserId(1l);
+		assertEquals(1, resources.size());
+	}
+	
+	@Test
+	public void getResourcesByRoleid() {
+		List<Resource> resources = resourceService.getRoleResourcesByRoleId(1l);
+		assertEquals(0, resources.size());
+	}
+
+}

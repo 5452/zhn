@@ -24,31 +24,31 @@
 
 		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 
-		<!-- <table tableName="tbl_user" domainObjectName="User">
+		<table tableName="tbl_user" domainObjectName="User">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 			<columnOverride column="deleted" javaType="boolean" jdbcType="TINYINT"></columnOverride>
 			<columnOverride column="admin" javaType="boolean" jdbcType="TINYINT"></columnOverride>
-		</table> -->
-		<!-- <table tableName="tbl_role" domainObjectName="Role">
+		</table>
+		<table tableName="tbl_role" domainObjectName="Role">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 			<columnOverride column="deleted" javaType="boolean" jdbcType="TINYINT"></columnOverride>
-		</table> -->
+		</table>
 		
-		<!-- <table tableName="tbl_resource" domainObjectName="Resource">
+		<table tableName="tbl_resource" domainObjectName="Resource">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 			<columnOverride column="deleted" javaType="boolean" jdbcType="TINYINT"></columnOverride>
-		</table> -->
+		</table>
 		
-		<!-- <table tableName="tbl_user_role" domainObjectName="UserRole">
+		<table tableName="tbl_user_role" domainObjectName="UserRole">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 		</table>
 		<table tableName="tbl_role_resource" domainObjectName="RoleResource">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
-		</table> -->
+		</table>
 		
-		<!-- <table tableName="tbl_user_login" domainObjectName="UserLogin">
+		<table tableName="tbl_user_login" domainObjectName="UserLogin">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
-		</table> -->
+		</table>
 		
 	</context>
 </generatorConfiguration>

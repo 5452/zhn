@@ -36,7 +36,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- sqlMapConfig -->
-		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+		<!-- <property name="configLocation" value="classpath:spring/mybatis-config.xml" /> -->
 		<property name="typeAliasesPackage" value="com.zhn.model" />
 		<!-- custom typeHandler scanning package -->
 		<property name="typeHandlersPackage" value="com.zhn.repository.mybatis.handler" />

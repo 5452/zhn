@@ -1,45 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhn.mapper.ResourceMapper">
-  <resultMap id="BaseResultMap" type="com.zhn.model.Resource">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhn.mapper.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.zhn.model.Resource" >
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="signature" jdbcType="VARCHAR" property="signature" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="level" jdbcType="INTEGER" property="level" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="deleted" jdbcType="TINYINT" property="deleted" />
-    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
-    <result column="update_datetime" jdbcType="TIMESTAMP" property="updateDatetime" />
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_name" property="parentName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="update_datetime" property="updateDatetime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
     -->
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -50,28 +50,28 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
+  <sql id="Update_By_Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
     -->
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -82,115 +82,96 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     <!--
       WARNING - @mbggenerated
     -->
     id, signature, name, parent_id, parent_name, type, url, level, description, deleted, 
     create_datetime, update_datetime
   </sql>
-  <select id="selectByExample" parameterType="com.zhn.model.ResourceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhn.model.ResourceExample" >
     <!--
       WARNING - @mbggenerated
     -->
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from tbl_resource
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <!-- 根据用户Id获取该用户的权限-->
-	<select id="getUserResourcesByUserId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id FROM tbl_resource_role, tbl_user_role WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user_role.`user_id` = #{userId})
-	</select>
-	<!-- 根据角色Id获取该角色的权限-->
-	<select id="getRoleResourcesByRoleId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(
-		SELECT resource_id FROM
-		tbl_resource_role WHERE role_id=#{roleId})
-	</select>
-	<select id="getResourcesByEmail" parameterType="String" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id  FROM tbl_resource_role, tbl_user_role, tbl_user  WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user.`id` = tbl_user_role.`user_id` AND tbl_user.email = #{email})
-	</select>
-  <delete id="deleteByExample" parameterType="com.zhn.model.ResourceExample">
+  <delete id="deleteByExample" parameterType="com.zhn.model.ResourceExample" >
     <!--
       WARNING - @mbggenerated
     -->
     delete from tbl_resource
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <select id="countByExample" parameterType="com.zhn.model.ResourceExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="com.zhn.model.ResourceExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
     -->
     select count(*) from tbl_resource
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     <!--
       WARNING - @mbggenerated
     -->
     update tbl_resource
-    <set>
-      <if test="record.id != null">
+    <set >
+      <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.signature != null">
+      <if test="record.signature != null" >
         signature = #{record.signature,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
+      <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.parentId != null">
+      <if test="record.parentId != null" >
         parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
-      <if test="record.parentName != null">
+      <if test="record.parentName != null" >
         parent_name = #{record.parentName,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
+      <if test="record.type != null" >
         type = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.url != null">
+      <if test="record.url != null" >
         url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.level != null">
+      <if test="record.level != null" >
         level = #{record.level,jdbcType=INTEGER},
       </if>
-      <if test="record.description != null">
+      <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.deleted != null">
+      <if test="record.deleted != null" >
         deleted = #{record.deleted,jdbcType=TINYINT},
       </if>
-      <if test="record.createDatetime != null">
+      <if test="record.createDatetime != null" >
         create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateDatetime != null">
+      <if test="record.updateDatetime != null" >
         update_datetime = #{record.updateDatetime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     <!--
       WARNING - @mbggenerated
     -->
@@ -207,46 +188,8 @@
       deleted = #{record.deleted,jdbcType=TINYINT},
       create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
       update_datetime = #{record.updateDatetime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <!-- 根据用户Id获取该用户的权限-->
-	<select id="getUserResourcesByUserId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id FROM tbl_resource_role, tbl_user_role WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user_role.`user_id` = #{userId})
-	</select>
-	<!-- 根据角色Id获取该角色的权限-->
-	<select id="getRoleResourcesByRoleId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(
-		SELECT resource_id FROM
-		tbl_resource_role WHERE role_id=#{roleId})
-	</select>
-	<select id="getResourcesByEmail" parameterType="String" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id  FROM tbl_resource_role, tbl_user_role, tbl_user  WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user.`id` = tbl_user_role.`user_id` AND tbl_user.email = #{email})
-	</select>
-  <!-- 根据用户Id获取该用户的权限-->
-	<select id="getUserResourcesByUserId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id FROM tbl_resource_role, tbl_user_role WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user_role.`user_id` = #{userId})
-	</select>
-	<!-- 根据角色Id获取该角色的权限-->
-	<select id="getRoleResourcesByRoleId" parameterType="Long" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(
-		SELECT resource_id FROM
-		tbl_resource_role WHERE role_id=#{roleId})
-	</select>
-	<select id="getResourcesByEmail" parameterType="String" resultMap="BaseResultMap">
-		SELECT 
-		<include refid="Base_Column_List" />
-		FROM tbl_resource WHERE id in(SELECT tbl_resource_role.resource_id  FROM tbl_resource_role, tbl_user_role, tbl_user  WHERE tbl_user_role.`role_id` = tbl_resource_role.`role_id` AND tbl_user.`id` = tbl_user_role.`user_id` AND tbl_user.email = #{email})
-	</select>
 </mapper>

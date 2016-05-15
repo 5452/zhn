@@ -19,8 +19,19 @@ public class User {
     private String mobile;
 
     private String password;
+    
+    @Transient
+    private String role;
 
-    @Column(name = "area_code")
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Column(name = "area_code")
     private String areaCode;
 
     private Byte status;

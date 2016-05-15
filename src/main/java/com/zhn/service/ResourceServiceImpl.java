@@ -61,17 +61,17 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> getUserResourcesByUserId(Long userId) {
-		return new ArrayList<Resource>();
+		return resourceMapper.getUserResourcesByUserId(userId);
 	}
 
 	@Override
 	public List<Resource> getRoleResourcesByRoleId(Long roleId) {
-		return new ArrayList<Resource>();
+		return resourceMapper.getRoleResourcesByRoleId(roleId);
 	}
 
 	@Override
 	public List<Resource> getResourcesByEmail(String email) {
-		return new ArrayList<Resource>();
+		return resourceMapper.getUserResourcesByEmail(email);
 	}
 
 	@Override

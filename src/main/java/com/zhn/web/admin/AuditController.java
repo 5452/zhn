@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.zhn.web;
+package com.zhn.web.admin;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.code.kaptcha.Constants;
 import com.zhn.model.User;
 import com.zhn.service.UserService;
 
@@ -28,20 +28,20 @@ import com.zhn.service.UserService;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 @SessionAttributes("user")
-public class AuthController {
+public class AuditController {
 	
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private AuthenticationManager customAuthenticationManager;
 
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String index(Model model, HttpSession session) {
 		if(session == null || session.getAttribute("user") == null)
-			return "redirect:/login";
-		return "index";
+			return "redirect:admin/login";
+		return "admin/index";
 	}
 	
 	/**
@@ -51,8 +51,8 @@ public class AuthController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpSession session) {
 		if(session != null && session.getAttribute("user") != null)
-			return "redirect:/";
-		return "login";
+			return "redirect:";
+		return "admin/login";
 	}
 	
 	/**
@@ -60,30 +60,34 @@ public class AuthController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String processLogin(String email, String password, Model model, HttpServletRequest request) {
+	public String processLogin(String email, String password, String captcha, Model model, HttpSession session) {
 		try {
+			if(!captcha.equals(session.getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
+				model.addAttribute("error", "验证码不正确！");
+				return "admin/login";
+			}
 			// 验证用户账号与密码是否正确
 			User user = userService.authUser(email, password);
 			Authentication authentication = customAuthenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(authentication);
-			HttpSession session = request.getSession(true);
 		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-		    // 当验证都通过后，把用户信息放在session里
+		    // 当验证都通过后，把用户信息放在request里
 			model.addAttribute("user", user);
 		} catch (AuthenticationException ae) {
 			ae.printStackTrace();
-			request.setAttribute("error", "登录异常，请联系管理员！");
-		    return "login";
+			model.addAttribute("error", "登录异常，请联系管理员！");
+		    return "admin/login";
 		}
-		return "redirect:/";
+		return "redirect:";
 	}
 	
 	/**
 	 * 登出
 	 */
 	@RequestMapping(value = "/logout")
-	public String logout() {
-		return "login";
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "admin/login";
 	}
 }

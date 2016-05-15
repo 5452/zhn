@@ -101,10 +101,12 @@
 		<org.aspectj.version>1.8.9</org.aspectj.version>
 		<!-- Bootstrap -->
 		<bootstrap.version>3.3.6</bootstrap.version>
-		<font.awesome.version>4.6.2</font.awesome.version>
+		<font-awesome.version>4.6.2</font-awesome.version>
 		<!-- JS Dependencies -->
 		<jquery-ui.version>1.11.4</jquery-ui.version>
 		<jquery.version>2.2.3</jquery.version>
+		<html5shiv.version>3.7.2</html5shiv.version>
+		<respond.version>1.4.2</respond.version>
 		<!-- captcha -->
 		<kaptcha.version>0.0.9</kaptcha.version>
 	</properties>
@@ -327,7 +329,7 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>font-awesome</artifactId>
-			<version>${font.awesome.version}</version>
+			<version>${font-awesome.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -338,6 +340,16 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>${jquery.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>html5shiv</artifactId>
+		    <version>${html5shiv.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>respond</artifactId>
+		    <version>${respond.version}</version>
 		</dependency>
 		<!-- captcha -->
 		<dependency>

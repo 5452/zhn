@@ -11,6 +11,10 @@
 	<http pattern="/web/**" security="none"  />
 	<http pattern="/resources/**" security="none"  />
 	<http pattern="/login*" security="none" />
+	
+	<!-- <b:bean name="customSecurityFilter" class="com.zhn.security.CustomSecurityFilter" />
+	<b:bean name="securityMetadataSource" class="com.zhn.security.CustomSecurityMetadataSource" /> -->
+	
 	<http use-expressions="true" entry-point-ref="loginUrlAuthenticationEntryPoint">
 		<access-denied-handler error-page="/deny"/>
 		<intercept-url pattern="/**" access="isAuthenticated()" />
