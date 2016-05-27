@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="zh">
+<head th:replace="/admin/fragments/headTag :: headTag">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/style.css"  th:href="@{/resources/css/style.css}" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/header.css"  th:href="@{/resources/css/header.css}" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" th:src="@{/web/jquery/2.1.0/jquery.js}"></script>
+    <title>ipla － ipla</title>
+</head>
+<body>
+<form name="pagedForm" action="" method="post" th:action="@{/admin/resource/list}">
+<div class="row center yahei Bwhite" style="padding-top: 135px;">
+	<table style="width:100%;">
+		<thead>
+	      <tr>
+	        <th>编号</th>
+	        <th>名称</th>
+	        <th>URL</th>
+	        <th>父级资源</th>
+	        <th>添加时间</th>
+	        <th>更新时间</th>
+	        <th>操作</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	<tr th:each="resource : ${pageInfo.list}">
+	    		<td th:text="${{resource.signature}}">编号</td>
+		        <td th:text="${{resource.name}}">名称</td>
+		        <td th:text="${{resource.url}}">/resource</td>
+		        <td th:text="${{resource.parentId}}">父级资源</td>
+		        <td th:text="${{resource.createDatetime}}">2014-03-27</td>
+		        <td th:text="${{resource.updateDatetime}}">2014-03-27</td>
+		        <td>&nbsp;&nbsp;&nbsp;<a sec:authorize="hasRole('sys_resource_delete')" th:href="@{'/admin_resource/delete?id=' + ${{resource.id}}}">删除</a></td>
+		      </tr>
+	    </tbody>
+	</table>
+	<table class="gridtable" style="width:100%;text-align: center;">
+	    <tr>
+            <td th:if="${pageInfo.hasPreviousPage}">
+                <a href="" th:href="@{list(pageId=${pageInfo.prePage}, pageSize=${pageInfo.pageSize})}">前一页</a>
+            </td>
+	        <td th:style="${nav != pageInfo.pageNum} ? 'font-weight: bold;' : '' " th:each="nav : ${pageInfo.navigatepageNums}">
+	        	<span th:if="${nav == pageInfo.pageNum}" th:text="${nav}"></span>
+	        	<a th:if="${nav != pageInfo.pageNum}" href="" th:href="@{list(pageId=${nav}, pageSize=${pageInfo.pageSize})}" th:text="${nav}"></a>
+	        </td>
+            <td th:if="${pageInfo.hasNextPage}">
+                <a href="" th:href="@{list(pageId=${pageInfo.nextPage}, pageSize=${pageInfo.pageSize})}">下一页</a>
+            </td>
+	    </tr>
+	</table>
+</div>
+</form>
+</body>
+</html>

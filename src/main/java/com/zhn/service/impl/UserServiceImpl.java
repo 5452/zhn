@@ -1,4 +1,4 @@
-package com.zhn.service;
+package com.zhn.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,11 @@ import com.zhn.mapper.UserRoleMapper;
 import com.zhn.model.User;
 import com.zhn.model.UserExample;
 import com.zhn.model.UserRole;
+import com.zhn.service.UserService;
+import com.zhn.service.base.BaseService;
 
-@Service("UserService")
-public class UserServiceImpl implements UserService {
+@Service("userService")
+public class UserServiceImpl extends BaseService<User> implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
@@ -26,11 +28,6 @@ public class UserServiceImpl implements UserService {
 	private UserRoleMapper userRoleMapper;
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
-	
-	@Override
-	public User getUserById(Long id) {
-		return userMapper.selectByPrimaryKey(id);
-	}
 
 	@Override
 	public List<User> getUserByName(String name) {
@@ -88,11 +85,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findAll() {
-		return new ArrayList<User>();
-	}
-
-	@Override
 	public void updateUserRole(UserRole userRole) {
 		// TODO 
 		if(userRole != null && userRole.getRoleId() != null && userRole.getRoleId() > 0 && userRole.getUserId() != null && userRole.getUserId() > 0) {
@@ -112,6 +104,12 @@ public class UserServiceImpl implements UserService {
 			return user;
 		else
 			throw new AuthenticationServiceException(msg);
+	}
+
+	@Override
+	public List<User> getByCondition(User object, int pageId, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

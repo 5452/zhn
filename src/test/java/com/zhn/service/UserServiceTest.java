@@ -8,6 +8,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,12 +25,14 @@ import com.zhn.model.User;
 @Transactional(isolation = Isolation.READ_UNCOMMITTED)
 public class UserServiceTest {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
+	
 	@Autowired
 	private UserService userService;
 
 	@Test
 	public void getUserById() {
-		User user = userService.getUserById(1l);
+		User user = userService.getById(1l);
 		assertEquals("Wang", user.getName());
 	}
 
@@ -55,6 +59,7 @@ public class UserServiceTest {
 
 	@Test
 	public void authUser() {
+		logger.debug("Wang Jun");
 		try {
 			User user = userService.authUser("test1@test1.com", "123456");
 			assertEquals("test1@test1.com", user.getEmail());

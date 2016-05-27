@@ -33,7 +33,7 @@ import com.zhn.model.UserExample;
  * @author 5452 2016年5月13日
  */
 
-@Service
+@Service("customUserDetailService")
 public class CustomUserDetailService implements UserDetailsService {
 
 	@Autowired

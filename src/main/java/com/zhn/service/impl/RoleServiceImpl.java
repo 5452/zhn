@@ -1,12 +1,10 @@
 /**
  * 
  */
-package com.zhn.service;
+package com.zhn.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +13,8 @@ import com.zhn.mapper.UserRoleMapper;
 import com.zhn.model.Role;
 import com.zhn.model.UserRole;
 import com.zhn.model.UserRoleExample;
+import com.zhn.service.RoleService;
+import com.zhn.service.base.BaseService;
 
 /**
  * 
@@ -22,19 +22,13 @@ import com.zhn.model.UserRoleExample;
  *	2016年5月13日
  */
 @Service("roleService")
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
 	@Autowired
 	private RoleMapper roleMapper;
 	
 	@Autowired
 	private UserRoleMapper userRoleMapper;
-	
-	@Override
-	public void add(Role role) {
-		if(role != null && StringUtils.isNotBlank(role.getName()) && StringUtils.isNotBlank(role.getSignature()))
-			roleMapper.insert(role);
-	}
 
 	@Override
 	public void delete(Long id) throws Exception {
@@ -50,19 +44,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public void update(Role role) {
-		if(role != null && role.getId() != null && role.getId() > 0)
-			roleMapper.updateByPrimaryKey(role);
-	}
-
-	@Override
-	public Role getById(Long id) {
-		return roleMapper.selectByPrimaryKey(id);
-	}
-
-	@Override
-	public List<Role> findAll() {
-		return new ArrayList<Role>();
+	public List<Role> getByCondition(Role object, int pageId, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

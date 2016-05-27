@@ -6,17 +6,10 @@ import org.springframework.security.core.AuthenticationException;
 
 import com.zhn.model.User;
 import com.zhn.model.UserRole;
-import com.zhn.service.base.BaseService;
+import com.zhn.service.base.IService;
 
 
-public interface UserService extends BaseService {
-	
-	/**
-	 * 通过ID获取用户信息
-	 * @param id
-	 * @return
-	 */
-	public User getUserById(Long id);
+public interface UserService extends IService<User> {
 	
 	/**
 	 * 按用户名称查询符合条件的记录
@@ -24,7 +17,7 @@ public interface UserService extends BaseService {
 	 * @return
 	 */
 	public List<User> getUserByName(String name);
-	
+
 	/**
 	 * 根据给定的email获取用户信息
 	 * @param email
@@ -58,12 +51,6 @@ public interface UserService extends BaseService {
 	 * @return
 	 */
 	public User authUser(String email, String password) throws AuthenticationException;
-	
-	/**
-	 * 查询出所用用户
-	 * @return
-	 */
-	public List<User> findAll();
 	
 	/**
 	 * 更新用户角色，只支持用户绑定单一角色

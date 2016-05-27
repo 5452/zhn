@@ -37,11 +37,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 	/**
 	 * 登录成功后跳转的地址
 	 */
-	private String successUrl = "/";
+	private String successUrl = "/admin";
 	/**
 	 * 登录失败后跳转的地址
 	 */
-	private String errorUrl = "/user/login";
+	private String errorUrl = "/admin/login";
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;

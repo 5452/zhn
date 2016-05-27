@@ -40,7 +40,7 @@ import com.zhn.model.UserExample;
  * @author WANGJUN
  * 
  */
-@Service
+@Service("securityService")
 public class SecurityService implements UserDetailsService {
 
 	@Autowired

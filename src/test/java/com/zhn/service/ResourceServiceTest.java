@@ -27,13 +27,13 @@ public class ResourceServiceTest {
 	@Test
 	public void getResourceById() {
 		Resource resource = resourceService.getById(1l);
-		assertEquals(null, resource);
+		assertEquals("元器件管理", resource.getName());
 	}
 	
 	@Test
 	public void getResourcesByUserid() {
 		List<Resource> resources = resourceService.getUserResourcesByUserId(1l);
-		assertEquals(1, resources.size());
+		assertEquals(0, resources.size());
 	}
 	
 	@Test
@@ -41,5 +41,15 @@ public class ResourceServiceTest {
 		List<Resource> resources = resourceService.getRoleResourcesByRoleId(1l);
 		assertEquals(0, resources.size());
 	}
-
+	
+	@Test
+	public void getByCondition() {
+		Resource resource = new Resource();
+		resource.setName("管理");
+		//resource.setDescription("A%'; DELETE FROM tbl_user_login; -- ");
+		List<Resource> resources = resourceService.getByCondition(resource, 1, 20);
+		
+		assertEquals(16, resources.size());
+	}
+	
 }

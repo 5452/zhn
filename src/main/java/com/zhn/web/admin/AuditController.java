@@ -40,8 +40,8 @@ public class AuditController {
 	@RequestMapping("")
 	public String index(Model model, HttpSession session) {
 		if(session == null || session.getAttribute("user") == null)
-			return "redirect:admin/login";
-		return "admin/index";
+			return "redirect:/admin/login";
+		return "/admin/index";
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class AuditController {
 			model.addAttribute("error", "登录异常，请联系管理员！");
 		    return "admin/login";
 		}
-		return "redirect:";
+		return "redirect:/admin";
 	}
 	
 	/**
